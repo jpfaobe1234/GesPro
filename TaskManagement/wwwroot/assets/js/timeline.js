@@ -4,6 +4,8 @@
 
     let taskRowIdCounter = 2;
 
+
+
     // Récupération des projets au chargement de la page
     getProject(1);
 
@@ -46,10 +48,10 @@
         var newRowSelect = $('#selectProjectIdCreate' + rowId);
         var newRowTask = $('#selectTaskId' + rowId);
 
-        newRowSelect.selectpicker({
-            liveSearch: true,
-            actionsBox: true
-        });
+        //newRowSelect.selectpicker({
+        //    liveSearch: true,
+        //    actionsBox: true
+        //});
 
         $.ajax({
             url: '/Leaves/GetAllLeaves',
@@ -70,8 +72,8 @@
                 newRowTask.empty();
                 $('#labelleaveproject').text("Leave");
                 newRowTask.prop('disabled', true);
-                newRowTask.selectpicker("refresh");
-                newRowSelect.selectpicker("refresh");
+                //newRowTask.selectpicker("refresh");
+                //newRowSelect.selectpicker("refresh");
             },
             error: function (xhr, status, error) {
                 console.error('Error fetching leaves:', error);
@@ -81,10 +83,10 @@
 
     function getTasks(rowId, projectId) {
         var newRowTask = $('#selectTaskId' + rowId);
-         newRowTask.selectpicker({
-            liveSearch: true,
-            actionsBox: true
-         });
+         //newRowTask.selectpicker({
+         //   liveSearch: true,
+         //   actionsBox: true
+         //});
 
         $.ajax({
             url: '/Tasks/GetTaskByIdProject',
@@ -100,7 +102,7 @@
                     });
                     newRowTask.append(option);
                 });
-                newRowTask.selectpicker("refresh");
+                /*newRowTask.selectpicker("refresh");*/
             },
             error: function (xhr, status, error) {
                 console.error('Error fetching tasks:', error);
@@ -114,10 +116,10 @@
         var newRowSelect = $('#selectProjectIdCreate' + rowId);
         var newRowTask = $('#selectTaskId' + rowId);
 
-        newRowSelect.selectpicker({
-            liveSearch: true,
-            actionsBox: true
-        });
+        //newRowSelect.selectpicker({
+        //    liveSearch: true,
+        //    actionsBox: true
+        //});
         $.ajax({
             url: '/Project/GetAllProjects',
             type: 'GET',
@@ -140,14 +142,14 @@
                 newRowSelect.on('change', function () {
                     getTasks(rowId, newRowSelect.val());
                 });
-                newRowSelect.selectpicker("refresh");
+                //newRowSelect.selectpicker("refresh");
 
                 if (newRowSelect.find('option').length > 0) {
                     
                     newRowSelect.val(newRowSelect.find('option:first').val());
 
                     getTasks(rowId, newRowSelect.val());
-                    newRowSelect.selectpicker('refresh');
+                    //newRowSelect.selectpicker('refresh');
                 }
             },
             error: function (xhr, status, error) {
@@ -201,27 +203,27 @@
         });
     });
 
-    $('.btn-plus-small').click(function () {
+    $('#btnNextTask').click(function () {
 
-        var newRow = $(`<div class="task-row${taskRowIdCounter} row align-items-end mb-3"  data-row-id="${taskRowIdCounter}">` +
-                            '<div class="col-12 col-md-1 mt-3">' +
-                                `<input type="checkbox" class="form-control checkleave${taskRowIdCounter}" />` +
-                            '</div>' +
-                            '<div class="col-12 col-md-3 mt-3">' +
-                                `<select placeholder="Selectpicker project" name="projectId" data-search="true" data-silent-initial-value-set="true" id="selectProjectIdCreate${taskRowIdCounter}" class="form-control w-100 selectProjectIdCreate${taskRowIdCounter}"></select>` +
-                            '</div>' +
-                            '<div class="col-12 col-md-4 mt-3">' +
-                                `<select placeholder="Selectpicker task" name="taskId" data-search="true" data-silent-initial-value-set="true" id="selectTaskId${taskRowIdCounter}" class="form-control w-100 selectTaskId${taskRowIdCounter}"></select>` +
-                            '</div>' +
-                            '<div class="col-12 col-md-1 mt-3">' +
-                                `<input name="hours" type="text" required class="form-control  hoursEditUsrTask${taskRowIdCounter}" />` +
-                            '</div>' +
-                            '<div class="col-12 col-md-1 mt-3 btn-container">' +
-                                `<button type="button" class="btn btn-delete btn-sm mt-auto">` +
-                                '<i class="fa fa-trash"></i>' +
-                                '</button>' +
-                            '</div>' +
-            '</div>');
+        //var newRow = $(`<div class="task-row${taskRowIdCounter} row align-items-end mb-3"  data-row-id="${taskRowIdCounter}">` +
+        //                    '<div class="col-12 col-md-1 mt-3">' +
+        //                        `<input type="checkbox" class="form-control checkleave${taskRowIdCounter}" />` +
+        //                    '</div>' +
+        //                    '<div class="col-12 col-md-3 mt-3">' +
+        //                        `<select placeholder="Selectpicker project" name="projectId" data-search="true" data-silent-initial-value-set="true" id="selectProjectIdCreate${taskRowIdCounter}" class="form-control w-100 selectProjectIdCreate${taskRowIdCounter}"></select>` +
+        //                    '</div>' +
+        //                    '<div class="col-12 col-md-4 mt-3">' +
+        //                        `<select placeholder="Selectpicker task" name="taskId" data-search="true" data-silent-initial-value-set="true" id="selectTaskId${taskRowIdCounter}" class="form-control w-100 selectTaskId${taskRowIdCounter}"></select>` +
+        //                    '</div>' +
+        //                    '<div class="col-12 col-md-1 mt-3">' +
+        //                        `<input name="hours" type="text" required class="form-control  hoursEditUsrTask${taskRowIdCounter}" />` +
+        //                    '</div>' +
+        //                    '<div class="col-12 col-md-1 mt-3 btn-container">' +
+        //                        `<button type="button" class="btn btn-delete btn-sm mt-auto">` +
+        //                        '<i class="fa fa-trash"></i>' +
+        //                        '</button>' +
+        //                    '</div>' +
+        //    '</div>');
 
         var newRow = $(`
             <tr class="task-row${taskRowIdCounter}" data-row-id="${taskRowIdCounter}">

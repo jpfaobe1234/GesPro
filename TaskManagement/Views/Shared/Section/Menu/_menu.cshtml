@@ -35,14 +35,14 @@
                         <span> Task </span>
                     </a>
                 </li>
+                <li>
+                    <a asp-action="Index" asp-controller="Leaves">
+                        <i class="fas fa-blind"></i>
+                        <span> Leave </span>
+                    </a>
+                </li>
                 @if (User.IsInRole("Admin"))
                 {
-                    <li>
-                        <a asp-action="Index" asp-controller="Leaves">
-                            <i class="fas fa-blind"></i>
-                            <span> Leave </span>
-                        </a>
-                    </li>
                     <li>
                         <a asp-action="Index" asp-controller="User">
                             <i class="fas fa-user-cog"></i>
