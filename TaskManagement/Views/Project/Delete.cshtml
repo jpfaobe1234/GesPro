@@ -1,0 +1,9 @@
+﻿@model Domain.DTO.ProjectDto;
+
+<div>
+    <p>Are you sure to delete this project?</p>
+    <p><strong>@Model.name</strong></p>
+</div>
+
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<button type="button" class="btn btn-danger" id="confirmDeleteButton" onclick="confirmDelete(@Model.projectId)" >Delete</button>

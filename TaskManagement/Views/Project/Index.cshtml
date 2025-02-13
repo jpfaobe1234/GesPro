@@ -1,0 +1,97 @@
+﻿@using Domain.DTO
+@model IEnumerable<Domain.DTO.ProjectDto>
+
+@{
+    Layout = "Layout/_LayoutWithMenu";
+    ViewData["Title"] = "List of Project";
+    ViewData["titrePage"] = "Projects";
+}
+
+@section VendorStyles {
+    <link href="~/assets/libs/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/libs/datatables/responsive.bootstrap4.css" rel="stylesheet" type="text/css" />
+}
+
+
+
+@section VendorScripts {
+    <script src="~/assets/libs/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/assets/libs/datatables/dataTables.bootstrap4.js"></script>
+    <script src="~/assets/libs/datatables/dataTables.responsive.min.js"></script>
+    <script src="~/assets/libs/datatables/dataTables.buttons.min.js"></script>
+}
+
+@section PageScripts {
+    <script src="~/assets/js/project.js"></script>
+}
+
+<style>
+    .border-custom {
+        border: 1px solid #6c757d; 
+    }
+
+    .action-button {
+        border: none; 
+        background-color: transparent; 
+        cursor: pointer; 
+    }
+</style>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card-box">
+           
+            <div class="responsive-table-plugin">
+                <table id="table_project" class="table table-bordered dt-responsive nowrap w-100">
+                   
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="createProjectModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="createProjectModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createProjectModalLabel">Create Project</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <div class="modal-body">
+                @await Html.PartialAsync("Create", new ProjectDto())
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="editProjectModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="editProjectModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProjectModalLabel">Edit Project</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <div class="modal-body">
+                @await Html.PartialAsync("Edit", new ProjectDto())
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="deleteProjectModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteProjectModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteProjectModalLabel">Delete Project</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <div class="modal-body">
+                @await Html.PartialAsync("Delete", new ProjectDto())
+            </div>
+        </div>
+    </div>
+</div>

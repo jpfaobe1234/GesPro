@@ -1,0 +1,56 @@
+﻿@model UserTask
+
+<div class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog" id="modalEdit" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Edit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+                <form id="formUserTask" method="post">
+                    <div class="row justify-content-center mb-5">
+                        
+                        <div class="col-12 col-md-3">
+                            <label class="form-label">Date</label><br />
+                            <input type="datetime-local"  required asp-for="date" class="form-control"  />
+                        </div>
+                        
+                        
+                    </div>
+                    
+                    <div class="row justify-content-center">
+                        <input type="hidden" asp-for="UserTaskId" />
+                        <div class="col-12 col-md-1">
+                            <label class="form-label">Leave</label><br />
+                            <input type="checkbox" asp-for="isLeave" id="checkleave" data-color="#3DDCF7" />
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <label id="labelleaveproject">Project</label>
+                            <select placeholder="Select project" name="projectId" class="form-control w-100 selectpicker" id="selectProjectId">
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label>Tasks</label>
+                            <select placeholder="Select task" name="taskId" class="form-control w-100 selectpicker" id="selectTaskId">
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-1">
+                            <label class="form-label">Hours</label>
+                            <input asp-for="hours" type="text" id="hoursEditUsrTask" required  class="form-control" />
+                        </div>
+                        
+                    </div>
+                    <div class="modal-footer mt-4">
+                        <button type="submit"  class="btn btn-primary">Edit</button>
+                    </div>
+                </form>
+
+            </div>
+            
+        </div>
+    </div>
+</div>

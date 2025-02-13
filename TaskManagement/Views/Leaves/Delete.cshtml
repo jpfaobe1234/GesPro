@@ -1,0 +1,8 @@
+﻿@model Domain.DTO.LeaveDto
+
+<div>
+    <p>Are you sure you want to delete this leave?</p>
+    <p><strong>@Model.reason</strong></p>
+</div>
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<button type="button" class="btn btn-danger" onclick="deleteLeaves(@Model.leaveId)" >Delete</button>

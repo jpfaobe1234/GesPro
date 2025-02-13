@@ -1,0 +1,85 @@
+<div class="navbar-custom">
+    <ul class="list-unstyled topnav-menu float-right mb-0">
+
+        <li class="dropdown notification-list">
+            <a class="nav-link nav-user mr-0 waves-effect" href="#" role="button">
+                <i class="fas fa-user-check"></i>
+                <span class="pro-user-name ml-1">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @User.Identity.Name
+                    }
+                </span>
+            </a>
+        </li>
+        <li class="dropdown notification-list">
+            <a href="#" class="nav-link" data-toggle="modal" data-target="#modalConfirmLogout">
+                <i class="fe-log-out"></i>
+                <span>Logout</span>
+            </a>            
+        </li>
+
+    </ul>
+
+    <ul class="list-unstyled topnav-menu topnav-menu-left mb-0">
+        <li>
+            <h1 class="page-title-main">@ViewData["titrePage"]</h1>
+        </li>
+    </ul>
+
+    <!-- LOGO -->
+    <div class="logo-box">
+        @* <a href="#" class="logo logo-dark text-center">
+            <span class="logo-lg">
+                <img src="~/assets/images/logo-dark.png" alt="" height="16">
+            </span>
+            <span class="logo-sm">
+                <img src="~/assets/images/logo-sm.png" alt="" height="24">
+            </span>
+        </a> *@
+        <a asp-action="Create" asp-controller="UserTask" class="logo logo-light text-center">
+            <span class="logo-lg">
+                <h1 class="text-light" style="font-size: 20px !important">GesPro</h1>
+            </span>
+            <span class="logo-sm">
+                <h4 class="text-light">GP</h4>
+            </span>
+        </a>
+    </div>
+
+    <ul class="list-unstyled topnav-menu topnav-menu-left mb-0">
+        <li>
+            <button class="button-menu-mobile disable-btn waves-effect">
+                <i class="fe-menu"></i>
+            </button>
+        </li>
+    </ul>
+
+</div>
+
+@* modal confirm logout *@
+<div class="modal fade" id="modalConfirmLogout" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Logout</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-body">
+                            <h4>Confirm Logout?</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a asp-controller="User" asp-action="Logout" class="btn btn-danger">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>

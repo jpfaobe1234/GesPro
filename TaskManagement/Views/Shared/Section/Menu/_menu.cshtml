@@ -1,0 +1,64 @@
+﻿<div class="left-side-menu">
+
+    <div class="slimscroll-menu">
+
+       
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+
+            <ul class="metismenu" id="side-menu">
+                <li>
+                    <a asp-action="Dashboard" asp-controller="Home">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span> Dashboard </span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-action="Create" asp-controller="UserTask">
+                        <i class="fas fa-home"></i>
+                        <span> Time Tracking </span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-action="Index" asp-controller="UserTask">
+                        <i class="fas fa-project-diagram"></i>
+                        <span> Timeline </span>
+                    </a>
+                </li><li>
+                    <a asp-action="Index" asp-controller="Project">
+                        <i class="fas fa-folder-open"></i>
+                        <span> Project </span>
+                    </a>
+                </li><li>
+                    <a asp-action="Index" asp-controller="Tasks">
+                        <i class="dripicons-to-do"></i>
+                        <span> Task </span>
+                    </a>
+                </li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <li>
+                        <a asp-action="Index" asp-controller="Leaves">
+                            <i class="fas fa-blind"></i>
+                            <span> Leave </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="Index" asp-controller="User">
+                            <i class="fas fa-user-cog"></i>
+                            <span> User </span>
+                        </a>
+                    </li>
+                }                
+            </ul>
+
+        </div>
+        <!-- End Sidebar -->
+
+        <div class="clearfix"></div>
+
+    </div>
+    <!-- Sidebar -left -->
+
+</div>
+   
