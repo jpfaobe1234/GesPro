@@ -9,6 +9,7 @@ using System.Security.Claims;
 using Domain.DTO.ViewModels;
 using System.Net.Mail;
 using Application.Services.Mail;
+using Application.Services.Parameter;
 
 namespace TaskManagement.Controllers
 {
@@ -19,11 +20,12 @@ namespace TaskManagement.Controllers
         private readonly SUserTaskRepository _SUserTask;
         private readonly UserServiceRepository _UserService;
         private readonly ISendMailService _sendMailService;
+        private readonly IParameterService _paramaterService;
         private readonly IFileViewToStringforEmailService _HtmlFileViewToStringforEmail;
 
 
         public UserTaskController(ILogger<HomeController> logger, SUserTaskRepository _SUserTask, UserServiceRepository _UserService, ISendMailService sendMailService,
-            IFileViewToStringforEmailService htmlFileViewToStringforEmail)
+            IFileViewToStringforEmailService htmlFileViewToStringforEmail, IParameterService paramaterService)
         {
             _logger = logger;
             this._SUserTask = _SUserTask;
@@ -31,6 +33,7 @@ namespace TaskManagement.Controllers
             _sendMailService = sendMailService;
             _sendMailService = sendMailService;
             _HtmlFileViewToStringforEmail = htmlFileViewToStringforEmail;
+            _paramaterService = paramaterService;
         }
         public  IActionResult Index()
         {
@@ -157,7 +160,9 @@ namespace TaskManagement.Controllers
 
                 byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
                 string fileName = Path.GetFileName(filePath);
-                var destemails = new[] { "jmbolaheriniaiko@saimltd.mu", "assistance@saimltd.mu" };
+                var sent = _paramaterService.GetTblParameterValueAsync("saisiTempsSendMailTo");
+                var Emails = sent.Result.Item1;
+                var destemails = string.IsNullOrEmpty(Emails) ? new[] { "assistance@saimltd.mu" } : Emails.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                 string subject = $"TIMELINE : {filter.startDate} TO {filter.endDate}";
                 var content = _HtmlFileViewToStringforEmail
                     .GetHtmlFileContent("timeline.html");

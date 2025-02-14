@@ -221,7 +221,8 @@ $("#excelButton").on("click", function (event) {
             var link = document.createElement('a');
             var url = window.URL.createObjectURL(blob);
             link.href = url;
-            link.download = "UserTask.xlsx";  // Nom du fichier
+            const yyyymmddhhmmss = new Date().toISOString().replace(/[-:T.Z]/g, '').slice(0, 14);
+            link.download = `SaisiTemps_${yyyymmddhhmmss}.xlsx`;
             document.body.appendChild(link);
             link.click();
             window.URL.revokeObjectURL(url);

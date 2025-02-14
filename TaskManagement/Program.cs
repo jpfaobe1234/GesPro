@@ -3,10 +3,12 @@ using Application.Classes.Mail;
 using Application.Interface;
 using Application.Services;
 using Application.Services.Mail;
+using Application.Services.Parameter;
 using Domain.Helper;
 using Domain.Interface;
 using Infrastructure.Data;
 using Infrastructure.repository;
+using Infrastructure.repository.parameter;
 using Infrastructure.Repository;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Localization;
@@ -65,6 +67,9 @@ builder.Services.AddScoped<ITasksRepository, TasksRepository>();
 builder.Services.AddScoped<ITasksService, TasksService>();
 builder.Services.AddTransient<IDataEncryptorKeyProvider, DataEncryptorKeyProvider>();
 builder.Services.AddSingleton<DataEncryptor>();
+
+builder.Services.AddScoped<IParameterService, ParameterService>();
+builder.Services.AddScoped<IParameterDataProvider, ParameterDataProvider>();
 
 builder.Services.AddTransient<IFileViewToStringforEmailService, FileViewToStringforEmailService>();
 builder.Services.AddTransient<ISendMailWithornoAttacheService, SendMailWithornoAttacheService>();
